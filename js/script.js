@@ -20,7 +20,10 @@ let calculationStart = document.getElementById('start'),
 	month = document.querySelector('.month-value'),
 	day = document.querySelector('.day-value');
 
-console.log(budgetValue);
+expensesItemBtn.disabled = true;
+optionalExpensesBtn.disabled = true;
+countBtn.disabled = true;
+
 let money, time;
 
 calculationStart.addEventListener('click', function () {
@@ -56,6 +59,8 @@ expensesItemBtn.addEventListener('click', function () {
 	expensesValue.textContent = sum;
 });
 
+
+
 optionalexpensesBtn.addEventListener('click', function () {
 	for (let i = 0; i < optionalexpensesItem.length; i++) {
 		let a = optionalexpensesItem[i].value;
@@ -71,7 +76,7 @@ optionalexpensesBtn.addEventListener('click', function () {
 countBudgetBtn.addEventListener('click', function () {
 
 	if (appData.budget) {
-		appData.moneyPerDay = (appData.budget / 30).toFixed();
+		appData.moneyPerDay = ((appData.budget - +expensesValue.textContent) / 30).toFixed();
 		daybudget.textContent = appData.moneyPerDay;
 		if (appData.moneyPerDay < 100) {
 			levelValue.textContent = 'Минимальный достаток';
